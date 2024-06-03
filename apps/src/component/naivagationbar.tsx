@@ -1,4 +1,4 @@
-'use client'
+"use client";
 import { StarIcon } from "lucide-react";
 import Link from "next/link";
 import { useState } from "react";
@@ -9,7 +9,7 @@ export default function NavigationBar() {
   const toggleMenu = () => {
     setIsOpen(!isOpen);
   };
-
+  console.log("Navigation bar is opened pleae check opened or not");
   return (
     <header className="bg-gradient-to-r from-slate-50 to-slate-100 shadow-md">
       <div className="container mx-auto px-4 lg:px-6 h-14 flex items-center justify-between">
@@ -60,13 +60,13 @@ export default function NavigationBar() {
               viewBox="0 0 24 24"
             >
               <path
-                className={!isOpen ? 'block' : 'hidden'}
+                className={!isOpen ? "block" : "hidden"}
                 fillRule="evenodd"
                 clipRule="evenodd"
                 d="M4 6h16v2H4V6zm16 5H4v2h16v-2zm0 5H4v2h16v-2z"
               />
               <path
-                className={isOpen ? 'block' : 'hidden'}
+                className={isOpen ? "block" : "hidden"}
                 fillRule="evenodd"
                 clipRule="evenodd"
                 d="M2 4.75a.75.75 0 01.75-.75h18.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zm0 7a.75.75 0 01.75-.75h18.5a.75.75 0 010 1.5H2.75a.75.75 0 01-.75-.75zm0 7a.75.75 0 01.75-.75h18.5a.75.75 0 010 1.5H2.75a.75.75 0 01-.75-.75z"
@@ -78,7 +78,7 @@ export default function NavigationBar() {
       {/* Mobile Menu */}
       <div
         className={`${
-          isOpen ? 'block' : 'hidden'
+          isOpen ? "block" : "hidden"
         } md:hidden bg-gradient-to-r from-slate-50 to-slate-100`}
       >
         <nav className="flex flex-col gap-2 p-4">
