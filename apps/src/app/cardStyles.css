@@ -1,0 +1,32 @@
+@keyframes marquee-left {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(-100%);
+  }
+}
+
+@keyframes marquee-right {
+  from {
+    transform: translateX(-100%);
+  }
+  to {
+    transform: translateX(100%);
+  }
+}
+
+.marquee-left {
+  display: flex;
+  animation: marquee-left 15s linear infinite;
+}
+
+.marquee-right {
+  display: flex;
+  animation: marquee-right 15s linear infinite;
+}
+
+.marquee-wrapper {
+  overflow: hidden;
+  white-space: nowrap;
+}

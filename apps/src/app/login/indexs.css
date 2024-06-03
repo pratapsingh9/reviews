@@ -1,0 +1,9 @@
+body {
+    background-image: url('https://source.unsplash.com/1600x900/?technology,modern');
+    background-size: cover;
+    background-position: center;
+  }
+  
+  .backdrop {
+    backdrop-filter: blur(10px);
+  }
