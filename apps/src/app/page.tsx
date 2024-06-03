@@ -312,3 +312,7 @@ function StarIcon(props: any) {
     </svg>
   );
 }
+
+
+
+// latest changes of website reponseive 
