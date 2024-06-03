@@ -3,6 +3,9 @@ import Snackbar from "@mui/joy/Snackbar";
 import { useState } from "react";
 import Link from "next/link";
 import "./cardStyles.css";
+
+import { CircularProgress } from "@mui/material";
+
 import {
   Card,
   CardHeader,
@@ -19,47 +22,22 @@ import ReviewsPages from "@/component/reviewsss";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FaGoogle, FaSignInAlt, FaUserPlus } from "react-icons/fa";
 import FooterComponent from "@/component/footer";
+import { reviewdata } from "@/utils/customerreviews";
 
-interface reviews {
-  reviewContent: String;
-  profileImage: String;
-  Ratings: number;
-  Dates: any;
-  Username: String;
-}
 
-const reviewdata: reviews[] = [
-  {
-    reviewContent: "Great product! Really satisfied with the quality.",
-    profileImage:
-      "https://media.cnn.com/api/v1/images/stellar/prod/210226040722-01-pokemon-anniversary-design.jpg?q=w_1110,c_fill",
-    Ratings: 5,
-    Dates: "June 1, 2023",
-    Username: "John Doe",
-  },
-  {
-    reviewContent: "Good value for money. Will buy again.",
-    profileImage:
-      "https://yt3.googleusercontent.com/wzEypbVsmY9BI-IbLwVius4UvC2rejtJB_PTXAdPpYXQ07EIjl5Ms55NCFq_dILwONpxrzE2xA=s900-c-k-c0x00ffffff-no-rj",
-    Ratings: 4,
-    Dates: "May 22, 2023",
-    Username: "Jane Smith",
-  },
-  {
-    reviewContent: "Average experience. The delivery was delayed.",
-    profileImage:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQz0Szqf5JUQ_wEtNFGrSV9bBkJ2YC9UWk3Jg&s",
-    Ratings: 3,
-    Dates: "April 18, 2023",
-    Username: "Mike Johnson",
-  },
-];
 
 export default function Component() {
   const [passowrd, setpassowrd] = useState("");
   const [confirmPassword, setconfirmPassword] = useState("");
   const [username, setusername] = useState("");
-
+  const [submitted, setsubmitted] = useState(false);
+  const onsumbited = () => {
+    try {
+      setsubmitted(true);
+    } catch (error) {
+      setsubmitted(false);
+    }
+  };
   const handleSignUp = async () => {
     try {
       const reponse = fetch("localhost:4040/user/login", {
@@ -130,12 +108,17 @@ export default function Component() {
             <div className="grid pl-36  max-w-[1300px] mx-auto gap-52 px-4 sm:px-6 md:px-10 md:grid-cols-2 md:gap-16">
               <div>
                 <h1 className="lg:leading-tighter text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl xl:text-[3.4rem] 2xl:text-[3.75rem] animate-fade-in">
-                  Share Your Feedback Get Rewarded
+                  Share Your Feedback Get Insights
                 </h1>
                 <p className="mx-auto max-w-[700px] mt-8  text-gray-500 md:text-xl dark:text-gray-400 animate-fade-in-up">
                   Review products, services, and experiences to earn rewards.
                   Your feedback helps others make informed decisions.
                 </p>
+                <div>
+                  <Button className="mt-3">
+                    Start Browsing
+                  </Button>
+                </div>
               </div>
               <div className="flex flex-col items-start space-y-4">
                 <Card className="p-8 rounded-xl shadow-lg max-w-md w-full bg-white">
@@ -212,8 +195,9 @@ export default function Component() {
                             <Button
                               type="submit"
                               className="w-full flex justify-center py-2 px-4 bg-slate-900 text-white rounded-md shadow-md hover:bg-black hover:scale-105 hover:ease-in-out "
+                              onClick={onsumbited}
                             >
-                              Sign in
+                              {submitted ? <CircularProgress /> : "Login"}
                             </Button>
                           </div>
                         </form>
@@ -256,8 +240,12 @@ export default function Component() {
                             <Button
                               type="submit"
                               className="w-full flex justify-center py-2 px-4 bg-slate-900 text-white rounded-md shadow-md hover:bg-black"
+                              onClick={onsumbited}
                             >
-                              Sign up
+                              {submitted ? 
+                              <CircularProgress
+                              color="success"
+                               /> : "Sign Up"}
                             </Button>
                             <Button
                               type="submit"
@@ -317,24 +305,20 @@ export default function Component() {
                   ))}
                 </div>
               </div>
-              <div className="marquee-wrapper">
-                <div className="marquee-left">
-                  {reviewdata.map((review, index) => (
-                    <ReviewsPages
-                      key={`left-${index}`}
-                      reviewContent={review.reviewContent}
-                      profileImage={review.profileImage}
-                      Ratings={review.Ratings}
-                      Dates={review.Dates}
-                      Username={review.Username}
-                    />
-                  ))}
-                </div>
-              </div>
             </div>
           </div>
         </section>
       </main>
+      <div className="flex items-center">
+        <div className="flex flex-col items-center container mx-auto px-4 py-12">
+          <h2 className="text-3xl mb-2 font-bold tracking-tighter sm:text-5xl animate-fade-in">
+            What Our Customers Say
+          </h2>
+          <p className="max-w-[900px] text-gray-500 md:text-xl/relaxed lg:text-base/relaxed xl:text-xl/relaxed dark:text-gray-400 animate-fade-in-up">
+            Check out what others are saying about their experiences.
+          </p>
+        </div>
+      </div>
       <FooterComponent />
     </div>
   );

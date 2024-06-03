@@ -18,11 +18,9 @@ export default function ReviewsPages({
     <>
       <div className="flex my-2 mx-3 w-full max-w-screen-md  border border-gray-300 rounded-xl p-4 shadow-md">
         <div className="relative h-14 w-14 rounded-full border-2 border-white mt-2">
-          <Image
+          <img
             src={profileImage}
             alt="profile"
-            layout="fill"
-            objectFit="cover"
             className="rounded-full"
           />
         </div>

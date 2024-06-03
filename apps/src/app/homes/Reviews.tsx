@@ -1,8 +1,4 @@
-/**
- * v0 by Vercel.
- * @see https://v0.dev/t/4PYlduGqEXe
- * Documentation: https://v0.dev/docs#integrating-generated-code-into-your-nextjs-app
- */
+
 "use client";
 
 import React, { ReactNode, useState } from "react";
@@ -77,7 +73,7 @@ export default function ReviewComponen() {
         review.description.toLowerCase().includes(searchTerm.toLowerCase())
       );
     });
-  const handleUpvote = (reviewId) => {
+  const handleUpvote = (reviewId:any) => {
     setReviews(
       reviews.map((review) =>
         review.id === reviewId
@@ -86,7 +82,7 @@ export default function ReviewComponen() {
       )
     );
   };
-  const handleDownvote = (reviewId) => {
+  const handleDownvote = (reviewId:any) => {
     setReviews(
       reviews.map((review) =>
         review.id === reviewId
@@ -190,7 +186,7 @@ export default function ReviewComponen() {
   );
 }
 
-function ThumbsDownIcon(props) {
+function ThumbsDownIcon(props:any) {
   return (
     <svg
       {...props}
@@ -210,7 +206,7 @@ function ThumbsDownIcon(props) {
   );
 }
 
-function ThumbsUpIcon(props) {
+function ThumbsUpIcon(props:any) {
   return (
     <svg
       {...props}
