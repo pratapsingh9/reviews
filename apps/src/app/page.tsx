@@ -313,6 +313,4 @@ function StarIcon(props: any) {
   );
 }
 
-
-
-// latest changes of website reponseive 
+// latest changes of website reponseive

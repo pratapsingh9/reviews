@@ -5,3 +5,5 @@ export interface reviews {
   Dates: any;
   Username: string;
 }
+
+export type main = {};

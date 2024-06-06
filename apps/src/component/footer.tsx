@@ -1,7 +1,6 @@
-
-import Link from "next/link"
-import { Input } from "@/components/ui/input"
-import { Button } from "@/components/ui/button"
+import Link from "next/link";
+import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
 export default function FooterComponent() {
   return (
@@ -9,8 +8,12 @@ export default function FooterComponent() {
       <div className="container mx-auto px-4 md:px-6">
         <div className="grid grid-cols-1 gap-8 sm:grid-cols-2 md:grid-cols-4">
           <div className="flex flex-col items-start">
-            <Link href="#" className="mb-4 text-xl font-bold text-gray-900 dark:text-gray-50" prefetch={false}>
-              Reviews Co.
+            <Link
+              href="#"
+              className="mb-4 text-xl font-bold text-gray-900 dark:text-gray-50"
+              prefetch={false}
+            >
+              Reviews Rater
             </Link>
             <nav className="space-y-2">
               <Link
@@ -44,7 +47,9 @@ export default function FooterComponent() {
             </nav>
           </div>
           <div className="flex flex-col items-start">
-            <h3 className="mb-4 text-lg font-bold text-gray-900 dark:text-gray-50">Follow Us</h3>
+            <h3 className="mb-4 text-lg font-bold text-gray-900 dark:text-gray-50">
+              Follow Us
+            </h3>
             <div className="flex space-x-4">
               <Link
                 href="#"
@@ -81,7 +86,9 @@ export default function FooterComponent() {
             </div>
           </div>
           <div className="flex flex-col items-start">
-            <h3 className="mb-4 text-lg font-bold text-gray-900 dark:text-gray-50">Legal</h3>
+            <h3 className="mb-4 text-lg font-bold text-gray-900 dark:text-gray-50">
+              Legal
+            </h3>
             <nav className="space-y-2">
               <Link
                 href="#"
@@ -107,8 +114,12 @@ export default function FooterComponent() {
             </nav>
           </div>
           <div className="flex flex-col items-start">
-            <h3 className="mb-4 text-lg font-bold text-gray-900 dark:text-gray-50">Subscribe</h3>
-            <p className="mb-4 text-gray-600 dark:text-gray-400">Get the latest updates and news from our company.</p>
+            <h3 className="mb-4 text-lg font-bold text-gray-900 dark:text-gray-50">
+              Subscribe
+            </h3>
+            <p className="mb-4 text-gray-600 dark:text-gray-400">
+              Get the latest updates and news from our company.
+            </p>
             <form className="flex w-full max-w-md">
               <Input
                 type="email"
@@ -129,10 +140,10 @@ export default function FooterComponent() {
         </div>
       </div>
     </footer>
-  )
+  );
 }
 
-function FacebookIcon(props:any) {
+function FacebookIcon(props: any) {
   return (
     <svg
       {...props}
@@ -148,11 +159,10 @@ function FacebookIcon(props:any) {
     >
       <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
     </svg>
-  )
+  );
 }
 
-
-function InstagramIcon(props:any) {
+function InstagramIcon(props: any) {
   return (
     <svg
       {...props}
@@ -170,11 +180,10 @@ function InstagramIcon(props:any) {
       <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
       <line x1="17.5" x2="17.51" y1="6.5" y2="6.5" />
     </svg>
-  )
+  );
 }
 
-
-function LinkedinIcon(props:any) {
+function LinkedinIcon(props: any) {
   return (
     <svg
       {...props}
@@ -192,11 +201,10 @@ function LinkedinIcon(props:any) {
       <rect width="4" height="12" x="2" y="9" />
       <circle cx="4" cy="4" r="2" />
     </svg>
-  )
+  );
 }
 
-
-function TwitterIcon(props:any) {
+function TwitterIcon(props: any) {
   return (
     <svg
       {...props}
@@ -212,5 +220,5 @@ function TwitterIcon(props:any) {
     >
       <path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.6 5.6 4.1 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z" />
     </svg>
-  )
+  );
 }

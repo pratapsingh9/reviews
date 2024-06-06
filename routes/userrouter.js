@@ -2,6 +2,34 @@ import { Router } from "express";
 import prismaClient from "../db/prismaclient.js";
 import StoreCache from "../cache/nodeCache.js";
 export const router = Router();
+router.post("/register/newuser", async (req, res) => {
+  try {
+    const { username, password } = req.body;
+    if (!username || !password) {
+      return res.json({
+        success: false,
+        msg: "no username and password",
+      });
+    }
+    const newuser = await prismaClient.user.create({
+      data: {
+        username: username,
+        password: password,
+      },
+    });
+    return res.json({
+      success: true,
+      msg: "User created",
+      user: newuser,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.json({
+      err: error.message,
+      successP: false,
+    });
+  }
+});
 
 router.get("/users", async (req, res) => {
   try {
@@ -9,7 +37,7 @@ router.get("/users", async (req, res) => {
     if (StoreCache.has(`userdata${username}`)) {
       return res.json(StoreCache.get(`userdata${username}`));
     }
-    
+
     const users = await prismaClient.user.findMany();
     StoreCache.set(`userdata${username}`, users);
     return res.json(users);
