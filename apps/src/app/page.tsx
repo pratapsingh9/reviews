@@ -23,6 +23,20 @@ import { reviewdata } from "@/utils/customerreviews";
 import { DeleteIcon, SearchIcon } from "lucide-react";
 import NavigationBar from "@/component/naivagationbar";
 import AboutFeatures from "@/component/aboutFeautre";
+import accordionActionsClasses from "@mui/material";
+
+
+
+const objects = {
+  name:"pratapsingh",
+  age:45,
+  address:"bangalore",
+  email:"pratapsingh.com",
+  phone:9876543210,
+  gender:"male",
+
+}
+
 
 export default function Component() {
   const [password, setPassword] = useState("");
