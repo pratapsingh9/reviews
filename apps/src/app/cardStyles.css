@@ -18,12 +18,12 @@
 
 .marquee-left {
   display: flex;
-  animation: marquee-left 15s linear infinite;
+  animation: marquee-left 40s linear infinite;
 }
 
 .marquee-right {
   display: flex;
-  animation: marquee-right 15s linear infinite;
+  animation: marquee-right 40s linear infinite;
 }
 
 .marquee-wrapper {

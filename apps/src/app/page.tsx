@@ -17,27 +17,26 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import ReviewsPages from "@/component/reviewsss";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { FaGoogle, FaSignInAlt, FaUserPlus } from "react-icons/fa";
 import FooterComponent from "@/component/footer";
 import { reviewdata } from "@/utils/customerreviews";
 import { DeleteIcon, SearchIcon } from "lucide-react";
 import NavigationBar from "@/component/naivagationbar";
 import AboutFeatures from "@/component/aboutFeautre";
-import accordionActionsClasses from "@mui/material";
-
-
+import axios from "axios";
+import LottieAnimation, {
+  LikeLottie,
+  ReviewLottieAnimation,
+} from "@/component/LottieAnimation";
 
 const objects = {
-  name:"pratapsingh",
-  age:45,
-  address:"bangalore",
-  email:"pratapsingh.com",
-  phone:9876543210,
-  gender:"male",
-
-}
-
+  name: "pratapsingh",
+  age: 45,
+  address: "bangalore",
+  email: "pratapsingh.com",
+  phone: 9876543210,
+  gender: "male",
+};
 
 export default function Component() {
   const [password, setPassword] = useState("");
@@ -55,17 +54,13 @@ export default function Component() {
 
   const handleSignUp = async () => {
     try {
-      const response = await fetch("localhost:4040/user/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          username,
-          password,
-        }),
+      let response = await axios.post("http://localhost:4040/user/login", {
+        username,
+        password,
       });
-      await response.json();
+      response = response.data;
+      if (response.status != 200) {
+      }
     } catch (error) {
       alert("Error occurred");
     }
@@ -80,7 +75,7 @@ export default function Component() {
             <div className="px-4 md:px-6 space-y-10 xl:space-y-16">
               <div className="grid max-w-[1300px] mx-auto gap-16 px-4 sm:px-6 md:px-10 md:grid-cols-2 md:gap-16">
                 <div>
-                  <h1 className="lg:leading-tighter text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl xl:text-[3.4rem] 2xl:text-[3.75rem] animate-fade-in">
+                  <h1 className="lg:tracking-wide text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl xl:text-[3.4rem] 2xl:text-[3.75rem] animate-fade-in md:tracking-wide">
                     Share Your Feedback Get Insights
                   </h1>
                   <p className="max-w-[700px] mt-8 text-gray-500 md:text-xl dark:text-gray-400 animate-fade-in-up">
@@ -88,150 +83,11 @@ export default function Component() {
                     Your feedback helps others make informed decisions.
                   </p>
                   <div>
-                    <Button className="mt-3">Start Browsing</Button>
+                    <Button className="mt-8">Start Browsing</Button>
                   </div>
                 </div>
-                <div className="flex flex-col items-start space-y-4">
-                  <Card className="p-8 rounded-xl shadow-lg max-w-md w-full bg-white">
-                    <h2 className="text-3xl font-bold text-center mb-6 text-black-600">
-                      Login or Sign Up
-                    </h2>
-                    <Tabs defaultValue="login" className="mb-6">
-                      <TabsList className="flex border-b border-blue-300">
-                        <TabsTrigger
-                          value="login"
-                          className="flex-1 text-center py-2 bg-black text-white rounded-t-lg"
-                        >
-                          <FaSignInAlt className="inline-block mr-2" />
-                          Login
-                        </TabsTrigger>
-                        <TabsTrigger
-                          value="signup"
-                          className="flex-1 text-center py-2 bg-black text-white rounded-t-lg"
-                        >
-                          <FaUserPlus className="inline-block mr-2" />
-                          Sign Up
-                        </TabsTrigger>
-                      </TabsList>
-                      <TabsContent value="login">
-                        <div>
-                          <form className="space-y-6 mt-6">
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700">
-                                Username
-                              </label>
-                              <Input
-                                type="text"
-                                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                                placeholder="Enter your username"
-                                value={username}
-                                onChange={(e) => setUsername(e.target.value)}
-                              />
-                            </div>
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700">
-                                Password
-                              </label>
-                              <Input
-                                type="password"
-                                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                                placeholder="Enter your password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
-                              />
-                              <label className="block text-sm mt-4 font-medium text-gray-700">
-                                Confirm Password
-                              </label>
-                              <Input
-                                type="password"
-                                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                                placeholder="Confirm your password"
-                                value={confirmPassword}
-                                onChange={(e) =>
-                                  setConfirmPassword(e.target.value)
-                                }
-                              />
-                            </div>
-                            <div className="flex items-center justify-center">
-                              <div className="text-sm">
-                                <a
-                                  href="#"
-                                  className="font-medium text-blue-600 hover:text-blue-500"
-                                >
-                                  Forgot your password?
-                                </a>
-                              </div>
-                            </div>
-                            <div>
-                              <Button
-                                type="submit"
-                                className="w-full flex justify-center py-2 px-4 bg-slate-900 text-white rounded-md shadow-md hover:bg-black hover:scale-105 hover:ease-in-out"
-                                onClick={onSubmitted}
-                              >
-                                {submitted ? <CircularProgress /> : "Login"}
-                              </Button>
-                            </div>
-                          </form>
-                        </div>
-                      </TabsContent>
-                      <TabsContent value="signup">
-                        <div>
-                          <form className="space-y-6 mt-6">
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700">
-                                Username
-                              </label>
-                              <Input
-                                type="text"
-                                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                                placeholder="Enter your username"
-                              />
-                            </div>
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700">
-                                Email
-                              </label>
-                              <Input
-                                type="email"
-                                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                                placeholder="Enter your email"
-                              />
-                            </div>
-                            <div>
-                              <label className="block text-sm font-medium text-gray-700">
-                                Password
-                              </label>
-                              <Input
-                                type="password"
-                                className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:ring-blue-500 focus:border-blue-500"
-                                placeholder="Enter your password"
-                              />
-                            </div>
-                            <div>
-                              <Button
-                                type="submit"
-                                className="w-full flex justify-center py-2 px-4 bg-slate-900 text-white rounded-md shadow-md hover:bg-black"
-                                onClick={onSubmitted}
-                              >
-                                {submitted ? (
-                                  <CircularProgress color="success" />
-                                ) : (
-                                  "Sign Up"
-                                )}
-                              </Button>
-                              <Button
-                                type="button"
-                                className="w-full flex justify-center py-2 px-4 bg-white text-slate-800 rounded-md shadow-md hover:bg-black mt-3 hover:text-white"
-                              >
-                                <FaGoogle className="mr-3 hover:bg-white" />
-                                <h3>Google Sign In</h3>
-                              </Button>
-                            </div>
-                          </form>
-                        </div>
-                      </TabsContent>
-                    </Tabs>
-                  </Card>
+                <div className="flex ml-7 flex-col items-start space-y-4">
+                  <LottieAnimation />
                 </div>
               </div>
             </div>
@@ -283,6 +139,17 @@ export default function Component() {
             </div>
           </section>
         </Element>
+        <section>
+          <div className="flex flex-col justify-center">
+            <h1 className="text-3xl items-center text-center mb-3 font-bold tracking-tighter sm:text-4xl md:text-5xl">
+              Start Exploring Today
+            </h1>
+            <div className="mt-4"></div>
+            <div className="flex lg:ml-56 sm:w-3/4 mt-5 ml-15 flex-row justify-center gap-12">
+              <LikeLottie  />
+            </div>
+          </div>
+        </section>
       </main>
       <AboutFeatures />
       <FooterComponent />

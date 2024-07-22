@@ -3,6 +3,10 @@ import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 
 export default function FooterComponent() {
+  function goToTopPage() {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+
   return (
     <footer className="bg-gray-100 py-12 dark:bg-gray-800">
       <div className="container mx-auto px-4 md:px-6">
@@ -10,18 +14,18 @@ export default function FooterComponent() {
           <div className="flex flex-col items-start">
             <Link
               href="#"
-              className="mb-4 text-xl font-bold text-gray-900 dark:text-gray-50"
+              className=" text-xl mb-2 font-bold text-gray-900 dark:text-gray-50"
               prefetch={false}
             >
               Reviews Rater
             </Link>
-            <nav className="space-y-2">
+            <nav className="flex flex-row gap-2 lg:flex-col lg:gap-4">
               <Link
                 href="#"
                 className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
                 prefetch={false}
               >
-                Home
+                Reviews
               </Link>
               <Link
                 href="#"
@@ -89,7 +93,7 @@ export default function FooterComponent() {
             <h3 className="mb-4 text-lg font-bold text-gray-900 dark:text-gray-50">
               Legal
             </h3>
-            <nav className="space-y-2">
+            <nav className="space-y-2 flex flex-col gap-2 mr-3">
               <Link
                 href="#"
                 className="text-gray-600 hover:text-gray-900 dark:text-gray-400 dark:hover:text-gray-50"
@@ -136,6 +140,12 @@ export default function FooterComponent() {
           </div>
         </div>
         <div className="mt-8 border-t border-gray-300 pt-8 text-center text-sm text-gray-600 dark:border-gray-700 dark:text-gray-400">
+          <h1
+            className="text-black font-bold text-xl font-sans hover:cursor-pointer mb-3"
+            onClick={goToTopPage}
+          >
+            Review Rater
+          </h1>
           &copy; 2024 Reviews Co. All rights reserved.
         </div>
       </div>
