@@ -39,6 +39,7 @@ export default function Rightbar() {
               alt="Profile"
               className="w-10 h-10 rounded-full object-cover"
             />
+            
             <div className="ml-3">
               <p className="font-semibold">Jane Cooper</p>
               <p className="text-sm text-gray-500">@JCooper</p>
