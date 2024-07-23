@@ -22,8 +22,6 @@ export default function page() {
         break;
     }
   }
-
-  const [state, dispatch] = useReducer(first, second, third)
   return (
     <div className="bg-slate-100 ">
       <nav>
