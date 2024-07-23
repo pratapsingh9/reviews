@@ -7,7 +7,7 @@ const config = {
     './components/**/*.{ts,tsx}',
     './app/**/*.{ts,tsx}',
     './src/**/*.{ts,tsx}',
-	],
+  ],
   prefix: "",
   theme: {
     container: {
@@ -52,6 +52,11 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
+        'sidebar-start': '#005bea',  // Start color of the gradient
+        'sidebar-end': '#00c6fb',    // End color of the gradient
+      },
+      backgroundImage: {
+        'sidebar-gradient': 'linear-gradient(180deg, var(--tw-color-sidebar-start), var(--tw-color-sidebar-end))',
       },
       borderRadius: {
         lg: "var(--radius)",

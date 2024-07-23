@@ -1,35 +1,47 @@
 "use client";
-import React , {useReducer} from "react";
+import React, { useReducer } from "react";
 import NavigationBar from "@/component/naivagationbar";
 import FooterComponent from "@/component/footer";
-import MainScreen  from "@/components/component/main-screen";
+import Sidebar from "./compone";
+import Rightbar from "./Rightbar";
 
+export default function Page() {
+  const initialState = {
+    loading: "true",
+  };
 
-export default function page() {
-  const initalstate = {
-    loading:'true'
-  }
-
-  function reducer(state:any,action:any) {
-    switch (action) {
-      case 'break':
-        console.log("bbreak is pressed")
-        break;
-      case 'continue':
-        console.log("continue button is pressed towards the end")
-        break;
+  function reducer(state, action) {
+    switch (action.type) {
+      case "break":
+        console.log("break is pressed");
+        return state;
+      case "continue":
+        console.log("continue button is pressed towards the end");
+        return state;
       default:
-        break;
+        return state;
     }
   }
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   return (
-    <div className="bg-slate-100 ">
+    <div className="bg-slate-100 overflow-hidden h-screen">
       <nav>
-        <NavigationBar />
+        {/* <NavigationBar /> */}
       </nav>
-      {/* <div className="w-1/5 border-black border h-[100vh]">
-      </div> */}
-      <MainScreen />
+
+      <div className="flex h-full">
+        <div className="w-1/5 border-r border-gray-300 bg-sidebar-gradient">
+          <Sidebar />
+        </div>
+        <div className="flex-1 bg-slate-200 p-6 overflow-auto">
+          {/* Main content area */}
+        </div>
+        <div className="w-1/4 bg-white border-l border-gray-300">
+          <Rightbar />
+        </div>
+      </div>
     </div>
   );
 }
