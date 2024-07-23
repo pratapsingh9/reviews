@@ -3,7 +3,7 @@ import { useState } from "react";
 import "./cardStyles.css";
 import { CircularProgress } from "@mui/material";
 import { Element } from "react-scroll";
-
+import './gradients.css'
 import {
   Card,
   CardHeader,
@@ -145,7 +145,7 @@ export default function Component() {
               Start Exploring Today
             </h1>
             <div className="mt-4"></div>
-            <div className="flex lg:ml-56 sm:w-3/4 mt-5 ml-15 flex-row justify-center gap-12">
+            <div className="flex lg:ml-5 sm:w-3/4 mt-5 ml-15 flex-row justify-center gap-12">
               <LikeLottie  />
             </div>
           </div>
