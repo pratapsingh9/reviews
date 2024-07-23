@@ -75,10 +75,10 @@ export function browsing() {
   )
 }
 
-function ChromeIcon(props) {
+function ChromeIcon(prop:any) {
   return (
     <svg
-      {...props}
+      {...prop}
       xmlns="http://www.w3.org/2000/svg"
       width="24"
       height="24"
@@ -99,7 +99,7 @@ function ChromeIcon(props) {
 }
 
 
-function FacebookIcon(props) {
+function FacebookIcon(props:any) {
   return (
     <svg
       {...props}
@@ -119,7 +119,7 @@ function FacebookIcon(props) {
 }
 
 
-function TwitterIcon(props) {
+function TwitterIcon(props:any) {
   return (
     <svg
       {...props}
@@ -139,7 +139,7 @@ function TwitterIcon(props) {
 }
 
 
-function XIcon(props) {
+function XIcon(props:any) {
   return (
     <svg
       {...props}
