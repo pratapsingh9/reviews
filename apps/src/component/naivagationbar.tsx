@@ -1,8 +1,8 @@
-"use client";
+'use client';
+import { useState } from 'react';
+import Link from 'next/link';
 import { Button } from "@mui/material";
 import { StarIcon } from "lucide-react";
-import Link from "next/link";
-import { useState } from "react";
 import { Modal, ModalDialog, ModalClose, Input } from "@mui/joy";
 import { CircularProgress } from "@mui/material";
 
@@ -46,29 +46,29 @@ export default function NavigationBar() {
         </Link>
         <nav className="hidden md:flex flex-grow items-center justify-center gap-4 sm:gap-6">
           <Link
-            href="/"
-            className="text-sm font-medium text-black hover:text-gray-200 transition-colors duration-300 ease-in-out"
+            href="/home"
+            className="text-sm font-medium text-black hover:text-gray-800 transition-colors duration-300 ease-in-out"
             prefetch={false}
           >
             Home
           </Link>
           <Link
-            href="/homes"
-            className="text-sm font-medium text-black hover:text-gray-200 transition-colors duration-300 ease-in-out"
+            href="/explore"
+            className="text-sm font-medium text-black hover:text-gray-800 transition-colors duration-300 ease-in-out"
             prefetch={false}
           >
-            Reviews
+            Explore
           </Link>
           <Link
             href="#"
-            className="text-sm font-medium text-black hover:text-gray-200 transition-colors duration-300 ease-in-out"
+            className="text-sm font-medium text-black hover:text-gray-800 transition-colors duration-300 ease-in-out"
             prefetch={false}
           >
             About
           </Link>
           <Link
             href="#"
-            className="text-sm font-medium text-black hover:text-gray-200 transition-colors duration-300 ease-in-out"
+            className="text-sm font-medium text-black hover:text-gray-800 transition-colors duration-300 ease-in-out"
             prefetch={false}
           >
             Contact
@@ -118,34 +118,34 @@ export default function NavigationBar() {
       {/* Mobile Menu */}
       <div
         className={`${
-          isMenuOpen ? "block" : "hidden"
-        } md:hidden bg-gradient-to-r from-slate-50 to-slate-100`}
+          isMenuOpen ? "fixed inset-0 z-50 bg-gradient-to-r from-slate-50 to-slate-100" : "hidden"
+        } md:hidden`}
       >
         <nav className="flex flex-col gap-2 p-4">
           <Link
-            href="/"
-            className="text-sm font-medium text-black hover:text-gray-200 transition-colors duration-300 ease-in-out"
+            href="/home"
+            className="text-sm font-medium text-black hover:text-gray-800 transition-colors duration-300 ease-in-out"
             prefetch={false}
           >
             Home
           </Link>
           <Link
-            href="/homes"
-            className="text-sm font-medium text-black hover:text-gray-200 transition-colors duration-300 ease-in-out"
+            href="/explore"
+            className="text-sm font-medium text-black hover:text-gray-800 transition-colors duration-300 ease-in-out"
             prefetch={false}
           >
-            Reviews
+            Explore
           </Link>
           <Link
             href="#"
-            className="text-sm font-medium text-black hover:text-gray-200 transition-colors duration-300 ease-in-out"
+            className="text-sm font-medium text-black hover:text-gray-800 transition-colors duration-300 ease-in-out"
             prefetch={false}
           >
             About
           </Link>
           <Link
             href="#"
-            className="text-sm font-medium text-black hover:text-gray-200 transition-colors duration-300 ease-in-out"
+            className="text-sm font-medium text-black hover:text-gray-800 transition-colors duration-300 ease-in-out"
             prefetch={false}
           >
             Contact

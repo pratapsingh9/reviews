@@ -10,7 +10,7 @@ import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs"
 import { Input } from "@/components/ui/input"
 import { Card, CardHeader, CardContent, CardFooter } from "@/components/ui/card"
 
-export function mainScreens() {
+export default function MainScreens() {
   return (
     <div className="flex min-h-screen bg-gray-100">
       <aside className="w-64 bg-white border-r">
