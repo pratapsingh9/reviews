@@ -1,17 +1,16 @@
-/* Hide scrollbar for Chrome, Safari, and Opera */
-.no-scrollbar::-webkit-scrollbar {
-    display: none;
-  }
-  
-  /* Hide scrollbar for IE, Edge, and Firefox */
-  .no-scrollbar {
-    -ms-overflow-style: none;  /* IE and Edge */
-    scrollbar-width: none;  /* Firefox */
-  }
-  
-  /* Additional styling for responsive tabs */
-  .tab {
-    white-space: nowrap;
-    overflow-x: auto;
-  }
-  
+/* styles.css */
+.modal-overlay {
+  backdrop-filter: blur(8px); /* Applies blur to the background */
+}
+
+.modal-content {
+  background-color: transparent; /* Ensures the modal content is clear */
+  border: none;
+  padding: 0;
+  overflow: hidden;
+}
+
+.blur-background {
+  filter: blur(8px); /* Blurs the background */
+  pointer-events: none; /* Prevents interaction with the background */
+}

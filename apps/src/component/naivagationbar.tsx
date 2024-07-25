@@ -1,5 +1,6 @@
 'use client';
 import { useState } from 'react';
+import { useRouter } from 'next/navigation';
 import Link from 'next/link';
 import { Button } from "@mui/material";
 import { StarIcon } from "lucide-react";
@@ -7,6 +8,7 @@ import { Modal, ModalDialog, ModalClose, Input } from "@mui/joy";
 import { CircularProgress } from "@mui/material";
 
 export default function NavigationBar() {
+  const router = useRouter();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [password, setPassword] = useState("");
@@ -45,13 +47,9 @@ export default function NavigationBar() {
           </span>
         </Link>
         <nav className="hidden md:flex flex-grow items-center justify-center gap-4 sm:gap-6">
-          <Link
-            href="/home"
-            className="text-sm font-medium text-black hover:text-gray-800 transition-colors duration-300 ease-in-out"
-            prefetch={false}
-          >
+          <div className='text-sm hover:cursor-pointer font-medium text-black hover:text-gray-800 transition-colors duration-300 ease-in-out' onClick={() => router.push('/home')}>
             Home
-          </Link>
+          </div>
           <Link
             href="/explore"
             className="text-sm font-medium text-black hover:text-gray-800 transition-colors duration-300 ease-in-out"
@@ -117,9 +115,8 @@ export default function NavigationBar() {
       </div>
       {/* Mobile Menu */}
       <div
-        className={`${
-          isMenuOpen ? "fixed inset-0 z-50 bg-gradient-to-r from-slate-50 to-slate-100" : "hidden"
-        } md:hidden`}
+        className={`${isMenuOpen ? "fixed inset-0 z-50 bg-gradient-to-r from-slate-50 to-slate-100" : "hidden"
+          } md:hidden`}
       >
         <nav className="flex flex-col gap-2 p-4">
           <Link
