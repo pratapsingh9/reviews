@@ -1,119 +1,90 @@
-import React from "react";
-import { CiSearch } from "react-icons/ci";
+"use client";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FaSearch } from "react-icons/fa";
+import { GoVerified } from "react-icons/go";
 
-interface TrendingItems {
-  title: string;
-  profile: string;
-}
-
-const TrendingItem: TrendingItems[] = [
-  {
-    title: "Sports - Trending",
-    profile: "Johnny Sins",
-  },
-  {
-    title: "Increase in nsi",
-    profile: "Gregory Dimitrov",
-  },
-  {
-    title: "Indian Bills",
-    profile: "Cody Fisher",
-  },
-  {
-    title: "Microsoft Outrage",
-    profile: "Technology",
-  },
+const trendingTopics = [
+  { topic: "Elon Musk", tweets: "123K" },
+  { topic: "#NFTs", tweets: "87.5K" },
+  { topic: "Crypto", tweets: "65.2K" },
+  { topic: "#AI", tweets: "54.8K" },
+  { topic: "Climate Change", tweets: "42.1K" },
 ];
 
+const suggestedUsers = [
+  { name: "Tech Insider", handle: "@techinsider", avatar: "https://picsum.photos/50/50?random=1", verified: true },
+  { name: "Startup Daily", handle: "@startupdaily", avatar: "https://picsum.photos/50/50?random=2", verified: false },
+  { name: "Science Now", handle: "@sciencenow", avatar: "https://picsum.photos/50/50?random=3", verified: true },
+];
 
-export default function Rightbar() {
+export default function RightBar() {
+  const [searchTerm, setSearchTerm] = useState("");
+
   return (
-    <div className="p-4 bg-white">
-      <SearchBar />
-      <div className="mt-8 w-full rounded-xl border border-gray-300 p-4 shadow-md">
-        <h1 className="text-lg font-semibold">Who to Follow</h1>
-        <ul className="mt-4 space-y-4">
-          <li className="flex items-center">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoM-G1dvmpiYr78W26mzWUyoFX_iaTDiO2Rw&s"
-              alt="Profile"
-              className="w-10 h-10 rounded-full object-cover"
-            />
-            
-            <div className="ml-3">
-              <p className="font-semibold">Jane Cooper</p>
-              <p className="text-sm text-gray-500">@JCooper</p>
-            </div>
-            <button className="ml-auto bg-blue-500 text-white py-1 px-3 rounded-full">
-              Follow
-            </button>
-          </li>
-          <li className="flex items-center">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoM-G1dvmpiYr78W26mzWUyoFX_iaTDiO2Rw&s"
-              alt="Profile"
-              className="w-10 h-10 rounded-full object-cover"
-            />
-            <div className="ml-3">
-              <p className="font-semibold">Cody Fisher</p>
-              <p className="text-sm text-gray-500">@CodyFisher</p>
-            </div>
-            <button className="ml-auto bg-blue-500 text-white py-1 px-3 rounded-full">
-              Follow
-            </button>
-          </li>
-          <li className="flex items-center">
-            <img
-              src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSoM-G1dvmpiYr78W26mzWUyoFX_iaTDiO2Rw&s"
-              alt="Profile"
-              className="w-10 h-10 rounded-full object-cover"
-            />
-            <div className="ml-3">
-              <p className="font-semibold">Guy Hawkins</p>
-              <p className="text-sm text-gray-500">@GuyHawkins</p>
-            </div>
-            <button className="ml-auto bg-blue-500 text-white py-1 px-3 rounded-full">
-              Follow
-            </button>
-          </li>
-        </ul>
-        <div className="text-blue-400 font-semibold mt-4 hover:cursor-pointer">
-          Show More
+    <div className="w-80 h-screen p-4 bg-white border-l border-gray-200 overflow-y-auto">
+      <div className="mb-6">
+        <div className="relative">
+          <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" />
+          <input
+            type="text"
+            placeholder="Search"
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full py-2 pl-10 pr-4 bg-gray-100 rounded-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+          />
         </div>
       </div>
-      <div className="mt-8 w-full bg-white rounded-xl border border-gray-300 p-4 shadow-md">
-        <h1 className="text-lg font-semibold">Trending</h1>
-        <ul className="mt-4 space-y-4">
-          {TrendingItem.map((item, index) => (
-            <TrendingLink key={index} id={index + 1} {...item} />
+
+      <div className="mb-6 bg-gray-50 rounded-xl p-4">
+        <h2 className="font-bold text-xl mb-4">Trends for you</h2>
+        <AnimatePresence>
+          {trendingTopics.map((item, index) => (
+            <motion.div
+              key={index}
+              className="mb-4 last:mb-0"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
+            >
+              <h3 className="font-semibold text-gray-900">{item.topic}</h3>
+              <p className="text-sm text-gray-500">{item.tweets} Tweets</p>
+            </motion.div>
           ))}
-        </ul>
+        </AnimatePresence>
       </div>
-    </div>
-  );
-}
 
-function TrendingLink({ id, title, profile }) {
-  return (
-    <li>
-      <p className="font-semibold">
-        {id}. {title}
-      </p>
-      <p className="text-sm text-gray-500 mr-9">{profile}</p>
-    </li>
-  );
-}
-
-function SearchBar() {
-  return (
-    <div className="relative">
-      <div className="flex items-center bg-gray-100 rounded-full p-2 transition-all duration-300 focus-within:ring-2 focus-within:ring-blue-500">
-        <CiSearch className="text-2xl text-gray-600 ml-2" />
-        <input
-          type="text"
-          className="flex-1 bg-transparent text-gray-700 ml-2 outline-none"
-          placeholder="Search..."
-        />
+      <div className="bg-gray-50 rounded-xl p-4">
+        <h2 className="font-bold text-xl mb-4">Who to follow</h2>
+        <AnimatePresence>
+          {suggestedUsers.map((user, index) => (
+            <motion.div
+              key={index}
+              className="flex items-center mb-4 last:mb-0"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.3, delay: index * 0.1 }}
+            >
+              <img src={user.avatar} alt={user.name} className="w-12 h-12 rounded-full mr-3" />
+              <div className="flex-1">
+                <div className="flex items-center">
+                  <h3 className="font-semibold text-gray-900">{user.name}</h3>
+                  {user.verified && <GoVerified className="ml-1 text-blue-500" />}
+                </div>
+                <p className="text-sm text-gray-500">{user.handle}</p>
+              </div>
+              <motion.button
+                className="bg-black text-white text-sm font-bold py-2 px-4 rounded-full hover:bg-gray-800"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+              >
+                Follow
+              </motion.button>
+            </motion.div>
+          ))}
+        </AnimatePresence>
       </div>
     </div>
   );

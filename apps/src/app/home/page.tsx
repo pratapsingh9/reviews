@@ -7,8 +7,21 @@ import Rightbar from "./Rightbar";
 import NotificationPage from './components/notifcations'
 import PageMainScreen from "./MainScreen";
 import UserProfile from "./components/UserProfilePage";
+import { useRecoilState } from "recoil";
+
+const list = [
+  { title: "Home", path: "/", icon: "HomeIcon" },
+  { title: "Explore", path: "/explore", icon: "SearchIcon" },
+  { title: "Messages", path: "/messages", icon: "ChatIcon" },
+  { title: "Notifications", path: "/notifications", icon: "BellIcon" },
+  { title: "Bookmarks", path: "/bookmarks", icon: "BookmarkIcon" },
+  { title: "Profile", path: "/profile", icon: "UserIcon" },
+  { title: "Settings", path: "/settings", icon: "CogIcon" },
+  { title: "Help", path: "/help", icon: "QuestionIcon" },
+]
 
 export default function Page() {
+
   return (
     <div className="bg-slate-100 overflow-hidden h-screen">
       <nav>
