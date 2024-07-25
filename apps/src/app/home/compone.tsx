@@ -12,7 +12,6 @@ interface SideBarItem {
 
 const SidebarItems: SideBarItem[] = [
   { name: "Home", icon: <IoMdHome className="text-2xl" /> },
-  { name: "Explore", icon: <FaHashtag className="text-2xl" /> },
   {
     name: "Notifications",
     icon: <IoMdNotificationsOutline className="text-2xl" />,

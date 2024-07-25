@@ -17,3 +17,8 @@ export const TodoSelectorsss = selector({
   get: ({ get }) => get(TodoAtom),
   set: ({ get, set }, newValue) => set(TodoAtom, newValue),
 });
+
+export const currentPageState = atom({
+  key: 'currentPageState',
+  default: 'home',
+});

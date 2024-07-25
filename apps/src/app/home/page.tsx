@@ -4,7 +4,10 @@ import NavigationBar from "@/component/naivagationbar";
 import FooterComponent from "@/component/footer";
 import Sidebar from "./compone";
 import Rightbar from "./Rightbar";
+import NotificationPage from './components/notifcations'
 import PageMainScreen from "./MainScreen";
+import UserProfile from "./components/UserProfilePage";
+
 export default function Page() {
   return (
     <div className="bg-slate-100 overflow-hidden h-screen">
@@ -18,7 +21,8 @@ export default function Page() {
         </div>
         <div className="flex-1 bg-white p-6 overflow-auto">
           {/* Main content area */}
-          <PageMainScreen />
+          {/* <PageMainScreen /> */}
+          <UserProfile />
         </div>
         <div className="w-1/4 bg-white border-l border-gray-300">
           <Rightbar />
