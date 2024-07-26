@@ -1,9 +1,8 @@
 'use client'
 import React, { useReducer } from "react";
-import Sidebar from "./compone";
-import Rightbar from "./Rightbar";
-import PageMainScreen from "./MainScreen";
-
+import Sidebar from "../home/compone";
+import Rightbar from "../home/Rightbar";
+import NotificationPage from './notifcations'
 export default function Page() {
   return (
     <div className="bg-slate-100 overflow-hidden h-screen">
@@ -16,7 +15,7 @@ export default function Page() {
         <div className="flex-1 bg-white p-6 overflow-auto">
           {/* Main content area */}
           <div className="main">
-            <PageMainScreen />
+            <NotificationPage />
           </div>
         </div>
         <div className="w-1/4 bg-white border-l border-gray-300">

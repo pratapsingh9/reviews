@@ -1,43 +1,20 @@
 "use client";
 import { useState } from "react";
 import "./cardStyles.css";
-import { CircularProgress } from "@mui/material";
 import { Element } from "react-scroll";
 import './gradients.css'
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-  CardFooter,
-} from "@/components/ui/card";
-import { Label } from "@/components/ui/label";
-import { Input } from "@/components/ui/input";
+import { RecoilRoot } from "recoil";
 import { Button } from "@/components/ui/button";
-import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
 import ReviewsPages from "@/component/reviewsss";
-import { FaGoogle, FaSignInAlt, FaUserPlus } from "react-icons/fa";
+
 import FooterComponent from "@/component/footer";
 import { reviewdata } from "@/utils/customerreviews";
-import { DeleteIcon, SearchIcon } from "lucide-react";
 import NavigationBar from "@/component/naivagationbar";
 import AboutFeatures from "@/component/aboutFeautre";
 import axios from "axios";
 import LottieAnimation, {
   LikeLottie,
-  ReviewLottieAnimation,
 } from "@/component/LottieAnimation";
-
-const objects = {
-  name: "pratapsingh",
-  age: 45,
-  address: "bangalore",
-  email: "pratapsingh.com",
-  phone: 9876543210,
-  gender: "male",
-};
-
 export default function Component() {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
@@ -67,6 +44,7 @@ export default function Component() {
   };
 
   return (
+    <RecoilRoot>
     <div className="flex flex-col min-h-screen">
       <NavigationBar />
       <main className="flex-1">
@@ -154,6 +132,7 @@ export default function Component() {
       <AboutFeatures />
       <FooterComponent />
     </div>
+    </RecoilRoot>
   );
 }
 
