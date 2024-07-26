@@ -199,10 +199,6 @@ const PostList = ({ openAvatarModal }) => {
       time: "2h",
       content: "Just wrapped up an amazing photoshoot at the historical palace! The architecture and ambiance were simply breathtaking.",
       media: [
-        "https://1847884116.rsc.cdn77.org/hindi/gallery/actress/kiaraadvani/kiaraadvani120923_4.jpg",
-        "https://1847884116.rsc.cdn77.org/hindi/gallery/actress/kiaraadvani/kiaraadvani120923_3.jpg",
-        "https://1847884116.rsc.cdn77.org/hindi/gallery/actress/kiaraadvani/kiaraadvani120923_4.jpg",
-        "https://1847884116.rsc.cdn77.org/hindi/gallery/actress/kiaraadvani/kiaraadvani120923_3.jpg",
       ],
       verified: true,
       comments: 1200,
