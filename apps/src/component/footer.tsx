@@ -1,7 +1,4 @@
 import Link from "next/link";
-import { Input } from "@/components/ui/input";
-import { Button } from "@/components/ui/button";
-
 export default function FooterComponent() {
   function goToTopPage() {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -125,7 +122,7 @@ export default function FooterComponent() {
               Get the latest updates and news from our company.
             </p>
             <form className="flex w-full max-w-md">
-              <Input
+              {/* <Input
                 type="email"
                 placeholder="Enter your email"
                 className="flex-1 rounded-l-md border-gray-300 bg-white px-4 py-2 text-gray-900 focus:border-gray-500 focus:outline-none dark:border-gray-700 dark:bg-gray-800 dark:text-gray-50"
@@ -135,7 +132,7 @@ export default function FooterComponent() {
                 className="rounded-r-md bg-gray-900 px-4 py-2 text-white hover:bg-gray-800 focus:outline-none dark:bg-gray-50 dark:text-gray-900 dark:hover:bg-gray-200"
               >
                 Subscribe
-              </Button>
+              </Button> */}
             </form>
           </div>
         </div>

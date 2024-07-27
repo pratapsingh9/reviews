@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { ThemeModeScript } from "flowbite-react";
 import Providers from './Providers'  // Import the Providers component
-
+import { NextProvider } from "@/lib/ProvidersWrapper";
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
@@ -18,9 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <ThemeModeScript />
       <body className={inter.className}>
-        <Providers>{children}</Providers>
+        <NextProvider>
+          <Providers>{children}</Providers>
+
+        </NextProvider>
       </body>
     </html>
   );
