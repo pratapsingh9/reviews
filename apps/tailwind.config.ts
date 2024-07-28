@@ -1,11 +1,11 @@
-import type { Config } from "tailwindcss"
+import type { Config } from "tailwindcss";
 const config = {
   darkMode: ["class"],
   content: [
-    './pages/**/*.{ts,tsx}',
-    './components/**/*.{ts,tsx}',
-    './app/**/*.{ts,tsx}',
-    './src/**/*.{ts,tsx}',
+    "./pages/**/*.{ts,tsx}",
+    "./components/**/*.{ts,tsx}",
+    "./app/**/*.{ts,tsx}",
+    "./src/**/*.{ts,tsx}",
   ],
   prefix: "",
   theme: {
@@ -51,11 +51,16 @@ const config = {
           DEFAULT: "hsl(var(--card))",
           foreground: "hsl(var(--card-foreground))",
         },
-        'sidebar-start': '#005bea',  // Start color of the gradient
-        'sidebar-end': '#00c6fb',    // End color of the gradient
+        "sidebar-start": "#005bea", // Start color of the gradient
+        "sidebar-end": "#00c6fb", // End color of the gradient
+      },
+      backgroundColor: {
+        "blue-gradient":
+          "linear-gradient(to bottom right, rgba(0, 0, 255, 0.3), rgba(0, 0, 0, 0.1))",
       },
       backgroundImage: {
-        'sidebar-gradient': 'linear-gradient(180deg, var(--tw-color-sidebar-start), var(--tw-color-sidebar-end))',
+        "sidebar-gradient":
+          "linear-gradient(180deg, var(--tw-color-sidebar-start), var(--tw-color-sidebar-end))",
       },
       borderRadius: {
         lg: "var(--radius)",
@@ -79,6 +84,6 @@ const config = {
     },
   },
   plugins: [require("tailwindcss-animate")],
-} satisfies Config
+} satisfies Config;
 
-export default config
+export default config;

@@ -21,9 +21,8 @@ export default function Page() {
         </div>
         <div className="flex-1 bg-white p-6 overflow-auto">
           {/* Main content area */}
-          {/* <PageMainScreen /> */}
           <div className="main">
-          <UserProfile />
+            <UserProfile />
           </div>
         </div>
         <div className="w-1/4 bg-white border-l border-gray-300">

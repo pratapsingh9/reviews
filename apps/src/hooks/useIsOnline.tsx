@@ -1,4 +1,4 @@
-import { useEffect,useState} from "react";
+import { useEffect, useState } from "react";
 export default function useIsOnline() {
     const [online, setonline] = useState(true);
     useEffect(() => {
@@ -15,4 +15,8 @@ export default function useIsOnline() {
         isOnline: online,
 
     }
+}
+
+export const hedging = () => {
+
 }
