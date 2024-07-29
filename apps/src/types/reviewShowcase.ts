@@ -6,6 +6,4 @@ export interface reviews {
   Username: string;
 }
 
-export type main = {
-  
-};
+export type main = {};

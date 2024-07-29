@@ -24,3 +24,8 @@ export default function DataFetching() {
     loading,
   };
 }
+
+
+
+export const FetchingHook = () => {
+}

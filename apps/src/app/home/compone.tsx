@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from "react";
 import { useRouter, usePathname } from "next/navigation";
 import Link from "next/link";
+import { signOut } from "next-auth/react";
 import { motion } from "framer-motion";
 import { IoHomeOutline, IoHome } from "react-icons/io5";
 import { IoMdNotificationsOutline, IoMdNotifications } from "react-icons/io";
@@ -9,14 +10,20 @@ import { CiSettings } from "react-icons/ci";
 import { FiMail, FiBookmark, FiUser } from "react-icons/fi";
 import { HiMail, HiBookmark, HiUser, HiCog } from "react-icons/hi";
 import { BsThreeDots } from "react-icons/bs";
-
+import { useSession } from "next-auth/react";
 const logoUrl = "https://picsum.photos/200";
 const profilePicUrl = "https://picsum.photos/200";
 
 export default function Sidebar() {
+  const { data } = useSession();
   const router = useRouter();
   const pathname = usePathname();
   const [activeTab, setActiveTab] = useState("");
+  useEffect(() => {
+    if (!data) {
+      router.replace("/");
+    }
+  }, [data]);
 
   useEffect(() => {
     setActiveTab(pathname);
@@ -36,10 +43,10 @@ export default function Sidebar() {
         >
           <div className="flex items-center justify-center w-14 h-14 rounded-full bg-green-500 text-white overflow-hidden">
             <img
-              src={logoUrl}
+              src={require("../../../public/images.png")}
               alt="Logo"
               className="w-full h-full object-cover"
-            />
+            /> 
           </div>
         </motion.div>
         <div className="space-y-2 w-full flex flex-col gap-1">
@@ -74,6 +81,17 @@ export default function Sidebar() {
         >
           Add Reviews
         </motion.button>
+        <motion.button
+          className="w-full py-3 px-6 rounded-full bg-slate-800 text-white font-bold text-lg hover:bg-slate-900 transition-colors duration-200 shadow-md"
+          onClick={() => {
+            signOut();
+          }}
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ type: "spring", stiffness: 400, damping: 30 }}
+        >
+          Sign Out
+        </motion.button>
         <motion.div
           className="flex items-center w-full py-3 px-4 rounded-full hover:bg-gray-100 transition-colors duration-200 cursor-pointer"
           whileHover={{ scale: 1.02 }}
@@ -103,10 +121,40 @@ interface SideBarItem {
 }
 
 const SidebarItems: SideBarItem[] = [
-  { name: "Home", icon: <IoHomeOutline className="text-2xl" />, activeIcon: <IoHome className="text-2xl" />, path: "/home" },
-  { name: "Notifications", icon: <IoMdNotificationsOutline className="text-2xl" />, activeIcon: <IoMdNotifications className="text-2xl" />, path: "/notifications" },
-  { name: "Messages", icon: <FiMail className="text-2xl" />, activeIcon: <HiMail className="text-2xl" />, path: "/messages" },
-  { name: "Bookmarks", icon: <FiBookmark className="text-2xl" />, activeIcon: <HiBookmark className="text-2xl" />, path: "/bookmarks" },
-  { name: "Profile", icon: <FiUser className="text-2xl" />, activeIcon: <HiUser className="text-2xl" />, path: "/profile" },
-  { name: "Settings", icon: <CiSettings className="text-2xl" />, activeIcon: <HiCog className="text-2xl" />, path: "/settings" },
+  {
+    name: "Home",
+    icon: <IoHomeOutline className="text-2xl" />,
+    activeIcon: <IoHome className="text-2xl" />,
+    path: "/home",
+  },
+  {
+    name: "Notifications",
+    icon: <IoMdNotificationsOutline className="text-2xl" />,
+    activeIcon: <IoMdNotifications className="text-2xl" />,
+    path: "/notifications",
+  },
+  {
+    name: "Messages",
+    icon: <FiMail className="text-2xl" />,
+    activeIcon: <HiMail className="text-2xl" />,
+    path: "/messages",
+  },
+  {
+    name: "Bookmarks",
+    icon: <FiBookmark className="text-2xl" />,
+    activeIcon: <HiBookmark className="text-2xl" />,
+    path: "/bookmarks",
+  },
+  {
+    name: "Profile",
+    icon: <FiUser className="text-2xl" />,
+    activeIcon: <HiUser className="text-2xl" />,
+    path: "/profile",
+  },
+  {
+    name: "Settings",
+    icon: <CiSettings className="text-2xl" />,
+    activeIcon: <HiCog className="text-2xl" />,
+    path: "/settings",
+  },
 ];

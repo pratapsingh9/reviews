@@ -2,7 +2,7 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion } from "framer-motion";
 import { FaGoogle, FaApple, FaReddit } from "react-icons/fa";
-import { signIn } from "next-auth/react";
+import { signIn , useSession } from "next-auth/react";
 
 
 
@@ -42,7 +42,7 @@ function drawLines(ctx, points, lineColor) {
 }
 
 function animateDots(canvasRef, points, lineColor) {
-    const ctx = canvasRef.current.getContext("2d");
+    const ctx = canvasRef.current.getContext!("2d");
     points.forEach((point) => {
         point.x += point.vx;
         point.y += point.vy;
@@ -66,6 +66,7 @@ function animateDots(canvasRef, points, lineColor) {
 }
 
 export default function LandingPage() {
+    const session = useSession()
     const [isSignUp, setIsSignUp] = useState(false);
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -151,7 +152,7 @@ export default function LandingPage() {
                         className="text-gray-600 mt-2"
                         style={{ color: currentTheme.textColor }}
                     >
-                        Kya Dekh Rha Hain Bsdk
+                        Get A New Experience
                     </p>
                 </div>
 

@@ -11,10 +11,6 @@ export default function Page() {
 
   return (
     <div className="bg-slate-100 overflow-hidden h-screen">
-      <nav>
-        {/* <NavigationBar /> */}
-      </nav>
-
       <div className="flex h-full">
         <div className="w-1/5 border-r border-gray-300 bg-sidebar-gradient">
           <Sidebar />
