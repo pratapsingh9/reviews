@@ -71,7 +71,7 @@ export default function LandingPage() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [username, setUsername] = useState("");
-    const canvasRef = useRef(null);
+    const canvasRef = useRef<HTMLCanvasElement>(null);
     const currentTheme = themes.light; // Default to light theme
 
     useEffect(() => {

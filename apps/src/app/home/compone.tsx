@@ -11,14 +11,23 @@ import { FiMail, FiBookmark, FiUser } from "react-icons/fi";
 import { HiMail, HiBookmark, HiUser, HiCog } from "react-icons/hi";
 import { BsThreeDots } from "react-icons/bs";
 import { useSession } from "next-auth/react";
+// import twitter  from ''
+import twitterImage from "../../source/images.png";
+
 const logoUrl = "https://picsum.photos/200";
-const profilePicUrl = "https://picsum.photos/200";
+
+
+const DefaultProfile = {
+  ImageUrl:"https://i.pinimg.com/236x/d8/1a/14/d81a149b89640547429c84bb0772f89c.jpg"
+}
 
 export default function Sidebar() {
-  const { data } = useSession();
+  const { data, status } = useSession();
   const router = useRouter();
   const pathname = usePathname();
   const [activeTab, setActiveTab] = useState("");
+  const userName = data?.user?.name?.toLowerCase().trim() ?? "Username";
+  const userNameSpaces = userName.replace(/\s+/g, '');
   useEffect(() => {
     if (!data) {
       router.replace("/");
@@ -41,12 +50,12 @@ export default function Sidebar() {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
         >
-          <div className="flex items-center justify-center w-14 h-14 rounded-full bg-green-500 text-white overflow-hidden">
+          <div className="flex items-center justify-center w-14 h-14 rounded-full  text-white overflow-hidden">
             <img
-              src={require("../../../public/images.png")}
+              src={twitterImage.src}
               alt="Logo"
               className="w-full h-full object-cover"
-            /> 
+            />
           </div>
         </motion.div>
         <div className="space-y-2 w-full flex flex-col gap-1">
@@ -98,13 +107,17 @@ export default function Sidebar() {
           transition={{ type: "spring", stiffness: 400, damping: 30 }}
         >
           <img
-            src={profilePicUrl}
-            alt="Profile"
+            src={data?.user?.image}
+            
             className="w-12 h-12 rounded-full mr-4 object-cover border-2 border-green-500"
           />
           <div className="flex-1">
-            <div className="text-lg font-semibold text-gray-900">Username</div>
-            <div className="text-gray-600">@username</div>
+            <div className="text-lg font-semibold text-gray-900">
+              {data?.user?.name ?? "User"}
+            </div>
+            <div className="text-gray-600">
+              @{userNameSpaces}
+            </div>
           </div>
           <BsThreeDots className="text-xl text-gray-500" />
         </motion.div>
