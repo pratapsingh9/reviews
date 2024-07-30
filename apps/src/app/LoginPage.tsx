@@ -42,7 +42,7 @@ function drawLines(ctx, points, lineColor) {
 }
 
 function animateDots(canvasRef, points, lineColor) {
-    const ctx = canvasRef.current.getContext!("2d");
+    const ctx = canvasRef.current.getContext!("2d") ?? null;
     points.forEach((point) => {
         point.x += point.vx;
         point.y += point.vy;
@@ -134,8 +134,8 @@ export default function LandingPage() {
     };
 
     return (
-        <div className="relative min-h-screen bg-gradient-to-r from-slate-200 to-white backdrop-blur-sm flex items-center justify-center">
-            <canvas ref={canvasRef} className="absolute inset-0 z-0 blur-sm" />
+        <div className="relative min-h-screen bg-gradient-to-r from-slate-200 to-white  flex items-center justify-center">
+            <canvas ref={canvasRef} className="absolute inset-0 z-0" />
             <div
                 className="w-full max-w-md m-auto rounded-lg shadow-lg py-10 px-8 z-20 relative"
                 style={{ backgroundColor: "#f5f5f5" }} // Changed to light gray
