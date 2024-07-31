@@ -1,0 +1,126 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id        Int       @id @default(autoincrement())
+  username  String    @unique
+  password  String
+  posts     Post[]
+  replies   Reply[]
+  comments  Comment[]
+  feedbacks Feedback[]
+  likes     Like[]
+  following Follow[] @relation("FollowingRelation")
+  followers Follow[] @relation("FollowerRelation")
+}
+
+model Post {
+  id                Int           @id @default(autoincrement())
+  title             String
+  content           String
+  author            User          @relation(fields: [authorId], references: [id])
+  authorId          Int
+  replies           Reply[]
+  comments          Comment[]
+  likes             Like[]
+  tags              PostTag[]
+  anonymousAuthor   AnonymousUser? @relation(fields: [anonymousAuthorId], references: [id])
+  anonymousAuthorId Int?
+}
+
+model Reply {
+  id                Int           @id @default(autoincrement())
+  content           String
+  post              Post          @relation(fields: [postId], references: [id])
+  postId            Int
+  author            User          @relation(fields: [authorId], references: [id])
+  authorId          Int
+  replies           Reply[]       @relation("ParentReply")
+  parent            Reply?        @relation("ParentReply", fields: [parentId], references: [id])
+  parentId          Int?
+  likes             Like[]
+  anonymousAuthor   AnonymousUser? @relation(fields: [anonymousAuthorId], references: [id])
+  anonymousAuthorId Int?
+}
+
+model Comment {
+  id                Int           @id @default(autoincrement())
+  content           String
+  post              Post          @relation(fields: [postId], references: [id])
+  postId            Int
+  author            User          @relation(fields: [authorId], references: [id])
+  authorId          Int
+  replies           Comment[]     @relation("ParentComment")
+  parent            Comment?      @relation("ParentComment", fields: [parentId], references: [id])
+  parentId          Int?
+  likes             Like[]
+  anonymousAuthor   AnonymousUser? @relation(fields: [anonymousAuthorId], references: [id])
+  anonymousAuthorId Int?
+}
+
+model Feedback {
+  id                Int           @id @default(autoincrement())
+  title             String
+  description       String
+  imageUrl          String?
+  upvotes           Int           @default(0)
+  downvotes         Int           @default(0)
+  user              User          @relation(fields: [userId], references: [id])
+  userId            Int
+  anonymousUser     AnonymousUser? @relation(fields: [anonymousUserId], references: [id])
+  anonymousUserId   Int?
+}
+
+model Like {
+  id                Int           @id @default(autoincrement())
+  user              User          @relation(fields: [userId], references: [id])
+  userId            Int
+  post              Post?         @relation(fields: [postId], references: [id])
+  postId            Int?
+  reply             Reply?        @relation(fields: [replyId], references: [id])
+  replyId           Int?
+  comment           Comment?      @relation(fields: [commentId], references: [id])
+  commentId         Int?
+}
+
+model Follow {
+  id                Int           @id @default(autoincrement())
+  follower          User          @relation("FollowerRelation", fields: [followerId], references: [id])
+  followerId        Int
+  following         User          @relation("FollowingRelation", fields: [followingId], references: [id])
+  followingId       Int
+}
+
+model Tag {
+  id                Int           @id @default(autoincrement())
+  name              String        @unique
+  posts             PostTag[]
+}
+
+model PostTag {
+  postId            Int
+  tagId             Int
+  post              Post          @relation(fields: [postId], references: [id])
+  tag               Tag           @relation(fields: [tagId], references: [id])
+  @@id([postId, tagId])
+}
+
+enum UserType {
+  REGULAR
+  ANONYMOUS
+}
+
+model AnonymousUser {
+  id                Int           @id @default(autoincrement())
+  userType          UserType      @default(ANONYMOUS)
+  posts             Post[]
+  replies           Reply[]
+  comments          Comment[]
+  feedbacks         Feedback[]
+}

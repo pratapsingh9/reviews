@@ -4,6 +4,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaArrowLeft, FaCalendarAlt, FaMapMarkerAlt, FaLink, FaStar, FaUserFriends } from "react-icons/fa";
 import { AiOutlineLike, AiOutlineDislike, AiOutlineComment } from "react-icons/ai";
 import { MdVerified } from "react-icons/md";
+import { useSession } from "next-auth/react";
 import { BsThreeDots, BsBookmark } from "react-icons/bs";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
 
@@ -11,7 +12,7 @@ const tabs = ["Reviews", "Lists", "About"];
 
 const UserProfile = () => {
   const [activeTab, setActiveTab] = useState("Reviews");
-
+  const {data,status} = useSession();
   const user = {
     name: "John Doe",
     handle: "@reviewguru",
@@ -46,7 +47,7 @@ const UserProfile = () => {
         <div className="flex justify-between items-start">
           <div>
             <h1 className="text-2xl font-bold flex items-center text-gray-900">
-              {user.name}
+              {data?.user?.name}
               {user.verified && <MdVerified className="ml-1 text-green-500" />}
             </h1>
             <p className="text-gray-600">{user.handle}</p>

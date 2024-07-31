@@ -1,49 +1,25 @@
-/*
-  Warnings:
-
-  - You are about to drop the column `createdAt` on the `Post` table. All the data in the column will be lost.
-  - You are about to drop the column `published` on the `Post` table. All the data in the column will be lost.
-  - You are about to drop the column `updatedAt` on the `Post` table. All the data in the column will be lost.
-  - You are about to drop the column `email` on the `User` table. All the data in the column will be lost.
-  - You are about to drop the column `name` on the `User` table. All the data in the column will be lost.
-  - You are about to drop the `Anonyomous` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Profile` table. If the table is not empty, all the data it contains will be lost.
-  - You are about to drop the `Reviews` table. If the table is not empty, all the data it contains will be lost.
-  - A unique constraint covering the columns `[username]` on the table `User` will be added. If there are existing duplicate values, this will fail.
-  - Made the column `content` on table `Post` required. This step will fail if there are existing NULL values in that column.
-  - Added the required column `username` to the `User` table without a default value. This is not possible if the table is not empty.
-
-*/
 -- CreateEnum
 CREATE TYPE "UserType" AS ENUM ('REGULAR', 'ANONYMOUS');
 
--- DropForeignKey
-ALTER TABLE "Profile" DROP CONSTRAINT "Profile_userId_fkey";
+-- CreateTable
+CREATE TABLE "User" (
+    "id" SERIAL NOT NULL,
+    "username" TEXT NOT NULL,
+    "password" TEXT NOT NULL,
 
--- DropIndex
-DROP INDEX "User_email_key";
+    CONSTRAINT "User_pkey" PRIMARY KEY ("id")
+);
 
--- AlterTable
-ALTER TABLE "Post" DROP COLUMN "createdAt",
-DROP COLUMN "published",
-DROP COLUMN "updatedAt",
-ADD COLUMN     "anonymousAuthorId" INTEGER,
-ALTER COLUMN "title" SET DATA TYPE TEXT,
-ALTER COLUMN "content" SET NOT NULL;
+-- CreateTable
+CREATE TABLE "Post" (
+    "id" SERIAL NOT NULL,
+    "title" TEXT NOT NULL,
+    "content" TEXT NOT NULL,
+    "authorId" INTEGER NOT NULL,
+    "anonymousAuthorId" INTEGER,
 
--- AlterTable
-ALTER TABLE "User" DROP COLUMN "email",
-DROP COLUMN "name",
-ADD COLUMN     "username" TEXT NOT NULL;
-
--- DropTable
-DROP TABLE "Anonyomous";
-
--- DropTable
-DROP TABLE "Profile";
-
--- DropTable
-DROP TABLE "Reviews";
+    CONSTRAINT "Post_pkey" PRIMARY KEY ("id")
+);
 
 -- CreateTable
 CREATE TABLE "Reply" (
@@ -128,10 +104,13 @@ CREATE TABLE "AnonymousUser" (
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Tag_name_key" ON "Tag"("name");
+CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "User_username_key" ON "User"("username");
+CREATE UNIQUE INDEX "Tag_name_key" ON "Tag"("name");
+
+-- AddForeignKey
+ALTER TABLE "Post" ADD CONSTRAINT "Post_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Post" ADD CONSTRAINT "Post_anonymousAuthorId_fkey" FOREIGN KEY ("anonymousAuthorId") REFERENCES "AnonymousUser"("id") ON DELETE SET NULL ON UPDATE CASCADE;
