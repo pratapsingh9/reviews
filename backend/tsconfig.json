@@ -1,12 +1,12 @@
 {
   "compilerOptions": {
-    "target": "es2016",
-    "module": "ESNext",  // Change this from "commonjs" to "ESNext"
-    "outDir": "./dist",
-    "rootDir": "./src",
-    "esModuleInterop": true,
+    "target": "es6", // or "es2017" or higher
+    "module": "commonjs",
     "strict": true,
-    "skipLibCheck": true
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist"
   },
   "include": ["src/**/*.ts"],
   "exclude": ["node_modules"]

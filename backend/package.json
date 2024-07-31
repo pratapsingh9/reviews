@@ -21,7 +21,9 @@
     "nodemon": "^3.1.4",
     "prisma": "^5.17.0",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.4",
     "zod": "^3.23.8"
+  },
+  "devDependencies": {
+    "typescript": "^5.5.4"
   }
 }

@@ -4,15 +4,14 @@ import { motion, AnimatePresence } from "framer-motion";
 import { FaArrowLeft, FaCalendarAlt, FaMapMarkerAlt, FaLink, FaStar, FaUserFriends } from "react-icons/fa";
 import { AiOutlineLike, AiOutlineDislike, AiOutlineComment } from "react-icons/ai";
 import { MdVerified } from "react-icons/md";
-import { useSession } from "next-auth/react";
 import { BsThreeDots, BsBookmark } from "react-icons/bs";
 import Masonry, { ResponsiveMasonry } from "react-responsive-masonry";
-
+import { useSession } from "next-auth/react";
 const tabs = ["Reviews", "Lists", "About"];
 
 const UserProfile = () => {
   const [activeTab, setActiveTab] = useState("Reviews");
-  const {data,status} = useSession();
+  const {data,status} = useSession()
   const user = {
     name: "John Doe",
     handle: "@reviewguru",
