@@ -115,7 +115,7 @@ const PostInput = () => {
           <div className="relative flex-shrink-0 w-32 h-32 bg-gray-200 rounded-lg overflow-hidden">
             <img src={imagePreview} alt="Preview" className="w-full h-full object-cover" />
             <MdClose 
-              className="absolute top-1 right-1 text-white bg-black rounded-full p-1 cursor-pointer"
+              className="absolute top-1  right-1 text-black bg-white rounded-full p-1 cursor-pointer"
               onClick={removeImage}
             />
           </div>
@@ -165,9 +165,6 @@ const IconWrapper = ({ children, tooltip }) => (
     <div className="hover:bg-gray-200 p-2 rounded-full cursor-pointer transition-colors duration-200">
       {children}
     </div>
-    {/* <div className="absolute bottom-full left-1/2 transform -translate-x-1/2 bg-gray-800 text-white text-xs rounded py-1 px-2 opacity-0 group-hover:opacity-100 transition-opacity duration-200">
-      {tooltip}
-    </div> */}
   </div>
 );
 const PostList = ({ openAvatarModal }) => {
@@ -208,8 +205,7 @@ const PostList = ({ openAvatarModal }) => {
       shares: 45,
       category: "Art & Culture",
       verified: false,
-    },
-    // ... (add more reviews as needed)
+    }
   ];
 
   const openModal = (content) => {

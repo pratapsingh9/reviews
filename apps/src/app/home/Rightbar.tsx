@@ -1,10 +1,10 @@
 "use client";
 import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FaSearch, FaMapMarkerAlt, FaLink, FaStar } from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
 import { MdVerified } from "react-icons/md";
-import { BsThreeDots } from "react-icons/bs";
 
+// Static data
 const trendingTopics = [
   { topic: "Best Restaurants", tweets: "123K" },
   { topic: "#FoodieFinds", tweets: "87.5K" },
@@ -19,6 +19,7 @@ const suggestedUsers = [
   { name: "Gourmet Guide", handle: "@gourmetguide", avatar: "https://picsum.photos/50/50?random=3", verified: true, bio: "Fine dining enthusiast | Food blogger" },
 ];
 
+// Components
 const AnimatedItem = ({ children, index }) => (
   <motion.div
     initial={{ opacity: 0, y: 20 }}
@@ -43,11 +44,11 @@ const SearchBar = ({ searchTerm, setSearchTerm }) => (
   </div>
 );
 
-const TrendingTopics = () => (
+const TrendingTopics = ({ topics }) => (
   <div className="mb-6 bg-white rounded-xl p-4 shadow-md">
     <h2 className="font-bold text-xl mb-4 text-gray-800">Trending Topics</h2>
     <AnimatePresence>
-      {trendingTopics.map((item, index) => (
+      {topics.map((item, index) => (
         <AnimatedItem key={index} index={index}>
           <div className="mb-4 last:mb-0 hover:bg-gray-50 p-2 rounded-lg transition-colors duration-200">
             <h3 className="font-semibold text-gray-900">{item.topic}</h3>
@@ -59,11 +60,11 @@ const TrendingTopics = () => (
   </div>
 );
 
-const SuggestedUsers = () => (
+const SuggestedUsers = ({ users }) => (
   <div className="bg-white rounded-xl p-4 shadow-md">
     <h2 className="font-bold text-xl mb-4 text-gray-800">Suggested Reviewers</h2>
     <AnimatePresence>
-      {suggestedUsers.map((user, index) => (
+      {users.map((user, index) => (
         <AnimatedItem key={index} index={index}>
           <div className="flex items-start mb-4 last:mb-0 hover:bg-gray-50 p-2 rounded-lg transition-colors duration-200">
             <img src={user.avatar} alt={user.name} className="w-12 h-12 rounded-full mr-3" />
@@ -92,14 +93,15 @@ const SuggestedUsers = () => (
 export default function RightBar() {
   const [searchTerm, setSearchTerm] = useState("");
 
-  const memoizedTrendingTopics = useMemo(() => <TrendingTopics />, []);
-  const memoizedSuggestedUsers = useMemo(() => <SuggestedUsers />, []);
+  // Memoize the static data
+  const memoizedTrendingTopics = useMemo(() => trendingTopics, []);
+  const memoizedSuggestedUsers = useMemo(() => suggestedUsers, []);
 
   return (
     <div className="w-full h-screen p-4 bg-gray-100 border-l border-gray-200 overflow-y-auto">
       <SearchBar searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
-      {memoizedTrendingTopics}
-      {memoizedSuggestedUsers}
+      <TrendingTopics topics={memoizedTrendingTopics} />
+      <SuggestedUsers users={memoizedSuggestedUsers} />
     </div>
   );
 }
